@@ -1,0 +1,7 @@
+interface:
+  display_name: "旅行攻略 Copilot"
+  short_description: "按研究流程整理中国境内出游方案"
+  default_prompt: "Use $travel-research-copilot to turn my destination, departure city, dates, budget, and preferences into a source-backed China trip planning draft."
+
+policy:
+  allow_implicit_invocation: true
