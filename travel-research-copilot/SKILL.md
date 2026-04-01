@@ -1,6 +1,6 @@
 ---
 name: travel-research-copilot
-description: Research-first travel planning workflow for China domestic leisure trips after the destination is known. Use when Codex needs to turn a natural-language trip request into a structured planning brief by asking for missing trip constraints, comparing direct transport options, recommending lodging areas and hotel candidates, screening activities from public web research plus optional Xiaohongshu sentiment signals, and producing a source-backed Markdown trip draft with risks and next actions.
+description: Research-first travel planning workflow for China domestic leisure trips after the destination is known. Use when Codex needs to turn a natural-language trip request into a structured planning brief by asking for missing trip constraints, comparing direct transport options, recommending lodging areas and hotel candidates, checking chain hotel ecosystems such as Huazhu and Atour before widening to other properties, screening activities from public web research plus Xiaohongshu signals, and producing a source-backed Markdown trip draft with risks and next actions.
 ---
 
 # Travel Research Copilot
@@ -22,13 +22,16 @@ Use this skill when the user already knows the destination and wants a practical
 - `我想五一去杭州，先看交通。`
 - `去成都，先看住宿，预算每晚 600 左右。`
 - `目的地定了西安，帮我整理一个完整的出游研究草案。`
+- `去太原，先帮我判断住哪个区，再优先看华住会和亚朵。`
 
 ## Required Behavior
 
 - Ask follow-up questions when required trip fields are missing.
 - Compare direct transport first. Do not invent complex transfer routing in v1.
 - Recommend lodging areas before recommending specific properties.
-- Treat Xiaohongshu as auxiliary sentiment and pitfall evidence, not the sole basis for a decision.
+- Check chain hotel options first in the chosen area, especially Huazhu, Atour, and other mainstream chains that fit the user's budget and trip style.
+- Widen to non-chain hotels or homestays only when chain options are missing, clearly weak, overpriced, or poor-fit for the trip.
+- Treat Xiaohongshu as an important auxiliary signal for vibe, complaints, and worth-it judgment, but not the sole basis for factual claims.
 - Attach sources for key facts such as price, schedule, rating, business hours, ticket info, location, and restrictions.
 - Mark uncertain or time-sensitive facts as `待确认`.
 - Give one recommended option, one to three alternatives, and short reasons for the ranking.
@@ -45,11 +48,11 @@ Use the transport rubric in [workflow.md](references/workflow.md). Compare plane
 
 ### 3. Lodging
 
-Use the lodging rubric in [workflow.md](references/workflow.md). Research the best area first by looking at public guides, map convenience, transit access, safety, and common visitor sentiment. Only then shortlist properties inside that area.
+Use the lodging rubric in [workflow.md](references/workflow.md). Research the best area first by looking at public guides, map convenience, transit access, safety, and common visitor sentiment. Then inspect chain hotel options in that area before widening to other properties.
 
 ### 4. Activity Screening
 
-Search public web sources with destination-specific keywords. Use Xiaohongshu only if public results or user-provided links are available. Include a place only when sentiment is clearly positive and repeated severe complaints are absent.
+Search public web sources with destination-specific keywords and actively inspect Xiaohongshu when public snippets or user-provided links are available. Include a place only when sentiment is clearly positive and repeated severe complaints are absent.
 
 ### 5. Final Draft
 
@@ -58,7 +61,8 @@ Assemble one Markdown planning brief with recommendations, alternatives, pitfall
 ## Research Standards
 
 - Prefer official sites and large public travel sources for hard facts.
-- Use review-heavy or creator-heavy sources for sentiment, atmosphere, and pitfalls.
+- Prefer official chain hotel pages or official booking ecosystems when evaluating mainstream hotel brands.
+- Use Xiaohongshu and review-heavy sources for sentiment, atmosphere, and pitfalls.
 - Show source conflicts instead of averaging them away.
 - Never present stale prices, schedules, or business hours as guaranteed.
 

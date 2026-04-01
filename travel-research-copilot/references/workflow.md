@@ -93,6 +93,7 @@ Decide `住哪里` before listing specific properties.
 - evening safety and noise level
 - tourist versus local atmosphere
 - recurring visitor praise or complaints
+- Xiaohongshu neighborhood notes for vibe, convenience, and common regrets
 
 ### Output Shape
 
@@ -108,21 +109,31 @@ Do not skip directly to hotel names.
 
 After the area is chosen, shortlist hotel or homestay options that fit the budget and trip style.
 
+### Search Order
+
+Use this order by default:
+
+1. official chain hotel ecosystems or official brand pages in the recommended area
+2. mainstream chain brands that match the budget and trip style, including Huazhu, Atour, and similar reliable chains
+3. other hotels when chain options are too weak, too expensive, too far, or too limited
+4. homestays only when they clearly fit the user's trip style better or when hotel supply is weak
+
 ### Filters
 
 - budget range
 - visible rating and review volume
 - distance to metro, station, or core area
 - property stability: not obviously noisy, far, or complaint-heavy
+- chain trust or operational consistency when relevant
 
 ### Ranking Rule
 
 Use this weighting logic:
 
-- `位置便利度` around 40%
-- `评分与评价量` around 30%
+- `位置便利度` around 35%
+- `评分与评价量` around 25%
 - `预算匹配度` around 20%
-- `稳定性/明显风险` around 10%
+- `品牌稳定性/明显风险` around 20%
 
 ### Output Shape
 
@@ -132,13 +143,16 @@ Return 3 to 5 candidates with:
 - area
 - expected price band
 - rating and review context if available
+- whether it is a chain hotel or another property type
 - why it is on the list
 - main risk or trade-off
 - source links
 
+When chain options are rejected, explicitly say why they were not chosen.
+
 ## 6. Activity Screening
 
-Use public web search first. Xiaohongshu is a supporting signal, not the only gate.
+Use public web search first, then actively check Xiaohongshu when accessible. Xiaohongshu is a strong supporting signal for atmosphere and pitfalls, but not the only gate.
 
 ### Suggested Search Directions
 
@@ -148,6 +162,8 @@ Use public web search first. Xiaohongshu is a supporting signal, not the only ga
 - `{destination} 避坑`
 - `{destination} 雨天 去哪`
 - `{destination} 小红书`
+- `{destination} 攻略`
+- `{destination} 情侣`
 
 ### Inclusion Rule
 
@@ -166,11 +182,15 @@ Typical severe complaint patterns:
 
 ### Xiaohongshu Handling
 
-Use Xiaohongshu only when public search snippets or user-provided links are accessible. When using it:
+When accessible, actively inspect Xiaohongshu for:
 
-- sample multiple creators instead of one viral note
-- ignore obvious ad tone or repeated templated copy
-- treat it as sentiment and pitfall evidence, not factual authority
+- whether the place still feels worth going
+- photo-only versus real-experience mismatch
+- common regret points
+- neighborhood vibe and convenience
+- whether a place fits couples, relaxed travel, or food-focused travel
+
+Use multiple creators instead of one viral note. Ignore obvious ad tone or repeated templated copy.
 
 If evidence is mixed or sparse, place the spot into `待判断` instead of forcing it into the main plan.
 
